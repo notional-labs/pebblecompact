@@ -1,4 +1,4 @@
-module level2pebble
+module pebblecompact
 
 go 1.18
 
