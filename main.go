@@ -31,12 +31,15 @@ func main() {
 	}()
 
 	iter := db.NewIter(nil)
+	var start, end []byte
 
-	iter.First()
-	start := cp(iter.Key())
+	if iter.First() {
+		start = cp(iter.Key())
+	}
 
-	iter.Last()
-	end := cp(iter.Key())
+	if iter.Last() {
+		end = cp(iter.Key())
+	}
 
 	if err := iter.Close(); err != nil {
 		panic(err)
