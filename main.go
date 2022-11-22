@@ -18,7 +18,9 @@ func main() {
 
 	dbPath := os.Args[1]
 
-	opts := &pebble.Options{}
+	opts := &pebble.Options{
+		MaxOpenFiles: 100,
+	}
 	opts.EnsureDefaults()
 
 	db, err := pebble.Open(dbPath, opts)
