@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/hex"
 	"fmt"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/util"
@@ -51,7 +52,11 @@ func main() {
 	//}
 
 	//err = db.Compact(start, end, false)
-	err = db.CompactRange(util.Range{Start: nil, Limit: nil})
+	start_key, errDecode := hex.DecodeString("ffd1e16a90b7b05050324904fa3c05c996da4833d3b4d128bfb95d7b658e0584")
+	if errDecode != nil {
+		panic(errDecode)
+	}
+	err = db.CompactRange(util.Range{Start: start_key, Limit: nil})
 	if err != nil {
 		panic(err)
 	}
